@@ -997,9 +997,9 @@ class ArrowUtilTests(Chai):
 
     def test_get_tzinfo(self):
 
-        get_tzinfo = arrow.Arrow._get_tzinfo
-
         with assertRaises(ValueError):
+            get_tzinfo = arrow.Arrow._get_tzinfo
+
             get_tzinfo('abc')
 
     def test_get_timestamp_from_input(self):

@@ -70,11 +70,6 @@ class DateTimeParser(object):
             has_seconds = time_parts[0].count(':') > 1
             has_subseconds = '.' in time_parts[0]
 
-        else:
-            has_tz = has_seconds = has_subseconds = False
-
-        if has_time:
-
             if has_subseconds:
                 formats = ['YYYY-MM-DDTHH:mm:ss.SSSSSS']
             elif has_seconds:
@@ -83,6 +78,8 @@ class DateTimeParser(object):
                 formats = ['YYYY-MM-DDTHH:mm']
 
         else:
+            has_tz = has_seconds = has_subseconds = False
+
             formats = [
                 'YYYY-MM-DD',
                 'YYYY-MM',

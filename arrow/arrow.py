@@ -486,7 +486,7 @@ class Arrow(object):
 
         values = [getattr(self, f) for f in frames]
 
-        for i in range(3 - len(values)):
+        for _ in range(3 - len(values)):
             values.append(1)
 
         floor = self.__class__(*values, tzinfo=self.tzinfo)
@@ -596,40 +596,40 @@ class Arrow(object):
         diff = abs(delta)
         delta = diff
 
-        if diff < 10:
+        if delta < 10:
             return locale.describe('now')
 
-        if diff < 45:
+        if delta < 45:
             return locale.describe('seconds', sign)
 
-        elif diff < 90:
+        elif delta < 90:
             return locale.describe('minute', sign)
-        elif diff < 2700:
+        elif delta < 2700:
             minutes = sign * int(max(delta / 60, 2))
             return locale.describe('minutes', minutes)
 
-        elif diff < 5400:
+        elif delta < 5400:
             return locale.describe('hour', sign)
-        elif diff < 79200:
+        elif delta < 79200:
             hours = sign * int(max(delta / 3600, 2))
             return locale.describe('hours', hours)
 
-        elif diff < 129600:
+        elif delta < 129600:
             return locale.describe('day', sign)
-        elif diff < 2160000:
+        elif delta < 2160000:
             days = sign * int(max(delta / 86400, 2))
             return locale.describe('days', days)
 
-        elif diff < 3888000:
+        elif delta < 3888000:
             return locale.describe('month', sign)
-        elif diff < 29808000:
+        elif delta < 29808000:
             self_months = self._datetime.year * 12 + self._datetime.month
             other_months = dt.year * 12 + dt.month
             months = sign * abs(other_months - self_months)
 
             return locale.describe('months', months)
 
-        elif diff < 47260800:
+        elif delta < 47260800:
             return locale.describe('year', sign)
         else:
             years = sign * int(max(delta / 31536000, 2))
